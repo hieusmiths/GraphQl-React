@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "^0.4.3",
+    "bootstrap": "^4.3.1",
+    "graphql": "^14.4.2",
+    "jwt-decode": "^2.2.0",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "reactstrap": "^8.0.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -14,6 +22,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "proxy": "http://localhost:5000",
     "extends": "react-app"
   },
   "browserslist": {

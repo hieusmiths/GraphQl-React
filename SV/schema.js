@@ -12,6 +12,10 @@ type Recipe {
     
 }
 
+type Token {
+    token: String!
+}
+
 type User {
     _id: ID
     username: String! @unique
@@ -26,6 +30,8 @@ type Query {
 }
 
 type Mutation {
+    signInUser(username: String!, password: String!): Token
+    singupUser(username: String!, email: String!, password: String!): Token
     addRecipe(name: String!, description: String!, category: String!, instructions: String!, username: String): Recipe
 }
 
@@ -33,6 +39,4 @@ schema {
     query: Query
     mutation: Mutation
   }
-
-
 `;

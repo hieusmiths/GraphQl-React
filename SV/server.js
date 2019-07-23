@@ -3,20 +3,25 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const graphQl = require('graphql');
-
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true
+}
 
 dotenv.config({ path: './variables.env' });
 const PORT = process.env.PORT || 4444;
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors(corsOptions))
 const Recipe = require('./models/Recipe');
 const User = require('./models/User');
 const { typeDefs } = require('./schema');
 const { resolvers } = require('./resolver');
+
 const schema = makeExecutableSchema({
     typeDefs,
     resolvers
@@ -27,7 +32,7 @@ app.use('/graphiql', graphiqlExpress({
 }))
 
 // Connect Shema With GraphQl
-app.use('/graphql',bodyParser.json(), graphqlExpress({
+app.use('/graphql', graphqlExpress({
     schema,
     context: {
         Recipe,
